@@ -24,8 +24,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                waitNSec(10);
                 clBackground.setBackgroundColor(Color.RED);
             }
         });
+    }
+
+    void wait1Sec(){
+        long start=System.currentTimeMillis();
+        while (System.currentTimeMillis()< start+1000);
+
+    }
+    void waitNSec(int n){
+        for(int i=0;i<n;i++){
+            wait1Sec();
+        }
     }
 }
