@@ -5,6 +5,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     Button btnBGChange;
     ConstraintLayout clBackground;
     ListView lvText;
+
+    public static final String TAG="Tag";
 
     final String items[] = new String[]{
             "Apple", "Banana","Strawberry","Pineapple","Guava","Grapes","kiwi"
@@ -43,10 +47,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+//                waitNSec(10);
+//                clBackground.setBackgroundColor(Color.RED);
+                Handler handler = new Handler();
+                Runnable runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        clBackground.setBackgroundColor(Color.RED);
+                    }
+                };
 
-
-                waitNSec(10);
-                clBackground.setBackgroundColor(Color.RED);
+                handler.postDelayed(runnable,5000);
             }
         });
     }
