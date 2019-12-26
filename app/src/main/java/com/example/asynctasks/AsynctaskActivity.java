@@ -49,10 +49,21 @@ public class AsynctaskActivity extends AppCompatActivity {
         protected Void doInBackground(Integer... integers){
             Log.d(TAG,"doInBackground: started");
             int n= integers[0];
-            waitNSec(n);
+//            waitNSec(n);
+            for(int i=0;i<n;i++){
+                wait1Sec();
+                publishProgress(i);
+            }
             Log.d(TAG,"doInBackground: ended");
             return null;
         }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            tvCounter.setText(String.valueOf(values[0]));
+        }
+
     }
     void wait1Sec(){
         long start=System.currentTimeMillis();
